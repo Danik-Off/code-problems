@@ -3,7 +3,7 @@
  * @return {string[]}
  */
 var letterCombinations = function(digits) {
-const pushedNums = digits.split('');
+const pushedNums =digits.split('');
 const keyboard =
 {
     1:[],
@@ -19,10 +19,30 @@ const keyboard =
     0:[],
     '#':[]  
 }
+array  = [""]
+    console.log(pushedNums)
+    for (x=0;x<pushedNums.length;x++)
+    {
+        num  = pushedNums[x]
+        console.log(keyboard[num])
+        newArr = []
+        for(i = 0;i<array.length; i ++)
+        {
+            
+            sym = array[i];
+            for (y=0;y<keyboard[num].length;y++)
+            { 
+                w = keyboard[num][y]
+                newArr.push(sym+w)
+            }
+        }
+        array = newArr
+    }
 
-for(num of pushedNums)
+if(array[0]==="")
 {
-    
+    array = []
 }
+return array;
 };
-console.log(letterCombinations("23"));
+console.log(letterCombinations(""));

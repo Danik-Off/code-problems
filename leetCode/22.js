@@ -2,62 +2,37 @@
  * @param {number} n
  * @return {string[]}
  */
-let arr = 
-[
-    [
-        [4]
-    ]
-]
-var generateParenthesis = function(n) {
-   let s = ["(((())))","((()()))","((())())","((()))()","(()(()))","(()()())","(()())()","(())(())","(())()()","()((()))","()(()())","()(())()","()()(())","()()()()"]
- JSON.stringify(findCombin(4))
- console.log(JSON.stringify(arr))
-};
 
-function findCombin()
-{   
-    
-    arA = arr[arr.length-1]
-    for(i=0;i<arr[arr.length-1].length;i++)
-    { 
-        console.log(arA[i]);
-    if(arA[i][0]>1)
-    {
-       
-        console.log(arA[i][0]);
-        arr.push([])
-        newAee = []
-        for(q=1; q<arA[i][0]; q++)
-        {
-          
-            // let newArr =  arr[arr.length-1][i]
-            let newArr = [...arA[i]]
-            console.log(newArr)
-            newArr[0] =   newArr[0]-q
-            newArr.push(q);
-            
-            console.log(JSON.stringify(newArr))
-            console.log("s",JSON.stringify(newAee))
-            
-            newAee.push(newArr)
-            //
-        }
-        arr[arr.length-1].push(newAee)
-        console.log(JSON.stringify(arr))
+
+function generateParenthesis(n) {
+    const result = [];
+  
+    function backtrack(current, left, right) {
+      if (left === 0 && right === 0) {
+        result.push(current);
+        return;
+      }
+  
+      if (left > 0) {
+        backtrack(current + '(', left - 1, right);
+      }
+  
+      if (right > left) {
+        backtrack(current + ')', left, right - 1);
+      }
     }
+  
+    backtrack('', n, n);
+    return result;
+  }
+  
+  // Пример использования
+  const n = 3;
+  const combinations = generateParenthesis(n);
+  console.log(combinations);
+  
 
-    else
-    {
-        break;
-    }
-    }
-    findCombin()
-
-}
-
-
-
-generateParenthesis(3)
+generateParenthesis(3);
 //5 42["((((()))))","(((()())))","(((())()))","(((()))())","(((())))()","((()(())))","((()()()))","((()())())","((()()))()","((())(()))","((())()())","((())())()","((()))(())","((()))()()","(()((())))","(()(()()))","(()(())())","(()(()))()","(()()(()))","(()()()())","(()()())()","(()())(())","(()())()()","(())((()))","(())(()())","(())(())()","(())()(())","(())()()()","()(((())))","()((()()))","()((())())","()((()))()","()(()(()))","()(()()())","()(()())()","()(())(())","()(())()()","()()((()))","()()(()())","()()(())()","()()()(())","()()()()()"]
 //4 14 Output: ["(((())))","((()()))","((())())","(()(()))","(()()())",()((())),((()))(),(())()(),()()(()),()()()()]10
 //3 5 Output: ["((()))","(()())","(())()","()(())","()()()"]
@@ -65,7 +40,7 @@ generateParenthesis(3)
 //1 1 Output: ["()"] 1
 
 // 4
-// 3+1 
+// 3+1
 // 1+3 *9
 // 2+2
 
@@ -76,10 +51,9 @@ generateParenthesis(3)
 
 // 1+1+1+1
 
+// 5 1
 
-// 5 1             
-
-// 4+1  5-1 4 
+// 4+1  5-1 4
 // 3+2
 // 2+3
 // 1+4
@@ -93,9 +67,5 @@ generateParenthesis(3)
 // 3+3
 // 2+4
 // 1+5
-
-
-
-
 
 //Output: ["))))","((()()))","((())())","(()(()))","(()()())",()((())),((()))(),(())()(),()()(()),()()()()]10
